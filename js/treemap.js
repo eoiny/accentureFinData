@@ -113,8 +113,8 @@ function treemap(){
     .style("width", (width + margin.left + margin.right) + "px")
     .style("height", (height + margin.top + margin.bottom) + "px")
     .style("left", margin.left + "px")
-    .style("top", margin.top + "px")
-    .attr("id", "first");
+    .style("top", margin.top + "px");
+    //.attr("id", "first");
 
   var node = div.datum(data1).selectAll(".node")
     .data(treemap.nodes)
@@ -124,11 +124,14 @@ function treemap(){
     .style("background", function(d) { return d.color ? d.color : "#ffffff"; })
     .text(function(d) { return d.children ? "blue" : d.name + "(" + d.revenue + ")"; });
 
+  console.log(data1);
   d3.select("#revenue1").on("click", function() {
     var node = div.datum(data1).selectAll(".node")
       .data(treemap.nodes);
+
     node.enter().append("div")
       .attr("class", "node");
+
     node.exit().remove();
 
     node.transition().duration(1500).call(position)
