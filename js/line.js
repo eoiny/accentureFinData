@@ -7,36 +7,17 @@
   var parse = ("Y%").parse;
 
   // Set the ranges & axes
-  var x = d3.time.scale().range([0, width]),
-    y = d3.scale.linear().range([height, 0]),
-    xAxis = d3.svg.axis().scale(x).orient("bottom").ticks(5),
-    yAxis = d3.svg.axis().scale(y).orient("left").ticks(5);
+  var x = d3.scale.linear().range([0, width]),
+      y = d3.scale.linear().range([height, 0]),
+      xAxis = d3.svg.axis().scale(x).orient("bottom").tickFormat(d3.format("d")).ticks(5),
+      yAxis = d3.svg.axis().scale(y).orient("left").ticks(5);
 
   var line = d3.svg.line()
     .x(function(d) { return x(d.date); })
     .y(function(d) { return y(d.price); });
 
-
   d3.csv("data/acnIndex.csv", type, function(error, data) {
 
-  /*var data = [{"series":"Accenture","date":2010,"price":100},
-    {"series":"Accenture","date":2011,"price":149},
-    {"series":"Accenture","date":2012,"price":175},
-    {"series":"Accenture","date":2013,"price":210},
-    {"series":"Accenture","date":2014,"price":242},
-    {"series":"Accenture","date":2015,"price":288},
-    {"series":"S&P 500","date":2010,"price":100},
-    {"series":"S&P 500","date":2011,"price":119},
-    {"series":"S&P 500","date":2012,"price":140},
-    {"series":"S&P 500","date":2013,"price":166},
-    {"series":"S&P 500","date":2014,"price":208},
-    {"series":"S&P 500","date":2015,"price":209},
-    {"series":"S&P 500 IT Sector Index","date":2010,"price":100},
-    {"series":"S&P 500 IT Sector Index","date":2011,"price":121},
-    {"series":"S&P 500 IT Sector Index","date":2012,"price":152},
-    {"series":"S&P 500 IT Sector Index","date":2013,"price":160},
-    {"series":"S&P 500 IT Sector Index","date":2014,"price":215},
-    {"series":"S&P 500 IT Sector Index","date":2015,"price":220}];*/
 
     console.log(data);
 
@@ -60,9 +41,9 @@
 // Add an SVG element with the desired dimensions and margin.
     var svg = d3.select("#line").append("svg")
       .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom);
-//.append("g")
-//.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     svg.append("clipPath")
       .attr("id", "clip")
@@ -79,7 +60,7 @@
 // Add the y-axis.
     svg.append("g")
       .attr("class", "y axis")
-      .attr("transform", "translate(" + width + ",0)")
+      .attr("transform", "translate(0,0)")
       .call(yAxis);
 
     var colors = d3.scale.category10();
@@ -104,12 +85,12 @@
       .attr('width', width)
       .attr('class', 'curtain')
       .attr('transform', 'rotate(180)')
-      .style('fill', '#ffffff');
+      .style('fill', '#eee');
 
     /* Create a shared transition for anything we're animating */
     var t = svg.transition()
       .delay(750)
-      .duration(6000)
+      .duration(4000)
       .ease('linear')
       .each('end', function() {
         d3.select('line.guide')

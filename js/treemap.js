@@ -109,6 +109,7 @@ function treemap(){
     .value(function(d) { return d.revenue; });
 
   var div = d3.select("#treemap").append("div")
+    .attr("class","center-block")
     .style("position", "relative")
     .style("width", (width + margin.left + margin.right) + "px")
     .style("height", (height + margin.top + margin.bottom) + "px")
@@ -121,7 +122,7 @@ function treemap(){
     .enter().append("div")
     .attr("class", "node")
     .call(position)
-    .style("background", function(d) { return d.color ? d.color : "#ffffff"; })
+    .style("background", function(d) { return d.color ? d.color : "#eee"; })
     .text(function(d) { return d.children ? "blue" : d.name + "(" + d.revenue + ")"; });
 
   console.log(data1);
@@ -135,7 +136,7 @@ function treemap(){
     node.exit().remove();
 
     node.transition().duration(1500).call(position)
-      .style("background", function(d) { return d.color ? d.color : "#ffffff"; })
+      .style("background", function(d) { return d.color ? d.color : "#eee"; })
       .text(function(d) { return d.children ? "blue" : d.name + "(" + d.revenue + ")"; });
 
   });
@@ -147,7 +148,7 @@ function treemap(){
     node.exit().remove();
 
     node.transition().duration(1500).call(position)
-      .style("background", function(d) { return d.color ? d.color : "#ffffff"; })
+      .style("background", function(d) { return d.color ? d.color : "#eee"; })
       .text(function(d) { return d.children ? "blue" : d.name + "(" + d.revenue + ")"; });
 
   });
@@ -159,7 +160,7 @@ function treemap(){
     node.exit().remove();
 
     node.transition().duration(1500).call(position)
-      .style("background", function(d) { return d.color ? d.color : "#ffffff"; })
+      .style("background", function(d) { return d.color ? d.color : "#eee"; })
       .text(function(d) { return d.children ? "blue" : d.name + "(" + d.revenue + ")"; });
 
   });
