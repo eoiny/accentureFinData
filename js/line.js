@@ -1,7 +1,7 @@
 
-  var margin = {top: 80, right: 80, bottom: 80, left: 80},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+var margin = {top:40, right:10, left:10, bottom:40},
+  width = 760 - margin.left - margin.right,
+  height = 500 - margin.top - margin.bottom;
 
   //parse year (overkill..)
   var parse = ("Y%").parse;
