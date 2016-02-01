@@ -9,7 +9,7 @@ var projection = d3.geo.mercator()
   .scale(100)
   .rotate([0,0]);
 
-var svg = d3.select("#countries").append("svg")
+var svg = d3.select("#country").append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
   .append("g")
