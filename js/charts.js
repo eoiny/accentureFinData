@@ -233,7 +233,7 @@ function country() {
           if (isNaN(value)){
             return "lightgrey";
           }
-          return "blue";
+          return "steelblue";
         });
     });
   });
