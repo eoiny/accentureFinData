@@ -76,6 +76,32 @@ of those sections to manage the look and feel of the site. */
     text-indent: 2px;
 }
 
+.bar {
+    fill: steelblue;
+}
+
+.bar:hover {
+    fill: brown;
+}
+
+path {
+    fill: none;
+    stroke: white;
+    stroke-width: 0.25px;
+    fill: grey;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 0.6px;
+    shape-rendering: crispEdges;
+    opacity: .8;
+}
+
+
+/*
 path.line {
     fill: none;
     stroke: #666;
@@ -136,3 +162,4 @@ path {
     fill: grey;
 }
 
+*/
