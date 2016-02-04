@@ -31,18 +31,24 @@ html {
 The padding is very important to make sure the scrollspy picks up the right area when scrolled to. Adjust the margin and padding of sections and children 
 of those sections to manage the look and feel of the site. */
 
+
+
 .intro-section {
     height: 100%;
     padding-top: 150px;
     text-align: center;
     background: #fff;
+    border-bottom: solid #eee;
+    border-bottom-width: 1px;
 }
 
 .revenue-section {
     height: 100%;
     padding-top: 150px;
     text-align: center;
-    background: #eee;
+    background: #fff;
+    border-bottom: solid #eee;
+    border-bottom-width: 1px;
 }
 
 .revenueNett-section {
@@ -50,13 +56,17 @@ of those sections to manage the look and feel of the site. */
     padding-top: 150px;
     text-align: center;
     background: #fff;
+    border-bottom: solid #eee;
+    border-bottom-width: 1px;
 }
 
 .return-section {
     height: 100%;
     padding-top: 150px;
     text-align: center;
-    background: #eee;
+    background: #fff;
+    border-bottom: solid #eee;
+    border-bottom-width: 1px;
 }
 
 .countries-section {
@@ -64,6 +74,8 @@ of those sections to manage the look and feel of the site. */
     padding-top: 150px;
     text-align: center;
     background: #fff;
+    border-bottom: solid #eee;
+    border-bottom-width: 1px;
 }
 
 .node {
@@ -99,6 +111,23 @@ path {
     opacity: .8;
 }
 
+.btn-toolbar {
+    display: inline-block;
+}
+
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    width: 70px;
+    padding: 1px;
+    font: 12px sans-serif;
+    background: #ffffff;
+    border: 0.7px;
+    border-radius: 1px;
+    border-style: solid;
+    border-color: #eee;
+    pointer-events: none;
+}
 
 /*
 path.line {

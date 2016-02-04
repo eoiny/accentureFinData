@@ -117,7 +117,7 @@ function line(){
       .attr('width', width)
       .attr('class', 'curtain')
       .attr('transform', 'rotate(180)')
-      .style('fill', '#eee');
+      .style('fill', '#fff');
 
 
 
@@ -147,6 +147,7 @@ function line(){
     return d;
   }
 }
+
 
 function bar() {
   var svg = d3.select("#bar").append("svg")
@@ -199,7 +200,6 @@ function bar() {
 }
 
 function country() {
-
   var projection = d3.geo.mercator()
     .center([0,0])
     .scale(100)
@@ -214,14 +214,19 @@ function country() {
   var path = d3.geo.path()
     .projection(projection);
 
-  d3.json("data/world50_simple.json", function(error, world) {
+  var div = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+  d3.json("data/world10_simple.json", function(error, world) {
     var countries = topojson.feature(world, world.objects.countries).features;
 
     d3.csv("data/acnISOcountries.csv", function(stats) {
       data = {};
       stats.forEach(function(d) {
         data[d.code] = d.code;
-      });
+     });
+      console.log(data)
 
       svg.selectAll(".country")
         .data(countries)
@@ -234,12 +239,215 @@ function country() {
             return "lightgrey";
           }
           return "steelblue";
+        })
+        .on("mouseover", function(d) {
+          d3.select(this)
+            .transition()
+            //.style("stroke-width",.7)
+            .style("fill", "brown");
+
+          div.transition()
+            .duration(200)
+            .style("opacity", 0.9);
+
+          div.html(d.properties.name+"<br>")
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY - 28) + "px");
+        })
+        .on("mouseout", function(d) {
+          d3.select(this)
+            .transition()
+            .style("fill",function(d){
+              var value = data[d.id];
+              if (isNaN(value)){
+                return "lightgrey";
+              }
+              return "steelblue";
+            })
+            .style("stroke", "white");
+          div.transition()
+            .duration(500)
+            .style("opacity", 0);
         });
     });
   });
 }
 
+function tree() {
 
-country()
+  var data1 = {
+    "name": "items",
+    "children"
+      :
+      [
+        {
+          "id": "1",
+          "revenue": 16203915,
+          "color": "steelblue",
+          "name": "Consulting"
+        },
+        {
+          "id": "2",
+          "revenue": 14844016,
+          "color": "#80ff80",
+          "name": "Outsourcing"
+        }
+      ]
+  };
+
+  var data2 = {
+    "name": "items",
+    "children"
+      :
+      [
+        {
+          "id": "1",
+          "revenue": 14209387,
+          "color": "#008080",
+          "name": "North America"
+        },
+        {
+          "id": "2",
+          "revenue": 14844016,
+          "color": "#800080",
+          "name": "Europe"
+        },
+        {
+          "id": "3",
+          "revenue": 5950595,
+          "color": "#808000",
+          "name": "Growth markets"
+        }
+      ]
+  };
+
+  var data3 = {
+    "name": "items",
+    "children"
+      :
+      [
+        {
+          "id": "1",
+          "revenue": 6349372,
+          "color": "#d73027",
+          "name": "Communication, Media & Technology"
+        },
+        {
+          "id": "2",
+          "revenue": 6634771,
+          "color": "#fc8d59",
+          "name": "Financial Services"
+        },
+        {
+          "id": "3",
+          "revenue": 5462550,
+          "color": "#fee090",
+          "name": "Health & Public Services"
+        },
+        {
+          "id": "4",
+          "revenue": 7596051,
+          "color": "#e0f3f8",
+          "name": "Products"
+        },
+        {
+          "id": "5",
+          "revenue": 4988627,
+          "color": "#91bfdb",
+          "name": "Resources"
+        },
+        {
+          "id": "6",
+          "revenue": 16560,
+          "color": "#4575b4",
+          "name": "Other"
+        }
+      ]
+  };
+
+  var treemap = d3.layout.treemap()
+    .size([width, height])
+    .sticky(false)
+    //.sort(function(a,b) { return a.revenue - b.revenue; })
+    .round(true)
+    .value(function(d) { return d.revenue; });
+
+  /*var svg = d3.select("#country").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + -(margin.left+55) + "," + margin.top + ")");*/
+
+  div = d3.select("#treemap").append("div")
+    .attr("class","center-block")
+    .style("position", "relative")
+    .style("width", (width + margin.left + margin.right) + "px")
+    .style("height", (height + margin.top + margin.bottom) + "px")
+    .style("left", margin.left + "px")
+    .style("top", margin.top + "px");
+
+  //.attr("id", "first");
+
+  var node = div.datum(data1).selectAll(".node")
+    .data(treemap.nodes)
+    .enter().append("div")
+    .attr("class", "node")
+    .call(position)
+    .style("background", function(d) { return d.color ? d.color : "#fff"; })
+    .text(function(d) { return d.children ? "blue" : d.name + "(" + d.revenue + ")"; });
+
+  console.log(data1);
+  d3.select("#revenue1").on("click", function() {
+    var node = div.datum(data1).selectAll(".node")
+      .data(treemap.nodes);
+
+    node.enter().append("div")
+      .attr("class", "node");
+
+    node.exit().remove();
+
+    node.transition().duration(1500).call(position)
+      .style("background", function(d) { return d.color ? d.color : "#fff"; })
+      .text(function(d) { return d.children ? "" : d.name + "(" + d.revenue + ")"; });
+
+  });
+  d3.select("#revenue2").on("click", function() {
+    var node = div.datum(data2).selectAll(".node")
+      .data(treemap.nodes);
+    node.enter().append("div")
+      .attr("class", "node");
+    node.exit().remove();
+
+    node.transition().duration(1500).call(position)
+      .style("background", function(d) { return d.color ? d.color : "#fff"; })
+      .text(function(d) { return d.children ? "" : d.name + "(" + d.revenue + ")"; });
+
+  });
+
+  d3.select("#revenue3").on("click", function() {
+    var node = div.datum(data3).selectAll(".node")
+      .data(treemap.nodes);
+    node.enter().append("div")
+      .attr("class", "node");
+    node.exit().remove();
+
+    node.transition().duration(1500).call(position)
+      .style("background", function(d) { return d.color ? d.color : "#fff"; })
+      .text(function(d) { return d.children ? "blue" : d.name + "(" + d.revenue + ")"; });
+
+  });
+
+function position() {
+  this.style("left", function(d) { return d.x + "px"; })
+    .style("top", function(d) { return d.y + "px"; })
+    .style("width", function(d) { return Math.max(0, d.dx - 1) + "px"; })
+    .style("height", function(d) { return Math.max(0, d.dy - 1) + "px"; });
+}
+
+}
+
+
+tree()
 bar()
+country()
 line();
