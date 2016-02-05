@@ -70,10 +70,10 @@
                         <a class="page-scroll" href="#revenue">Revenue</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#revenueNett">More Revenues</a>
+                        <a class="page-scroll" href="#return">Returns</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#return">Returns</a>
+                        <a class="page-scroll" href="#performance">Performance</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#countries">Countries</a>
@@ -98,22 +98,26 @@
         </div>
     </section>
 
-    <!-- Revenue Section -->
+    <!-- Treemap Section -->
     <section id="revenue" class="revenue-section">
         <div class="container">
             <div class="row">
               <div class="col-md-8" id="treemap"></div>
               <div class="col-md-4 text-left">
                 <h1>Revenue Section</h1>
-                  To the left is a graph showing the anticipated profits
-                  of the 'Widget Incorporated' company.
-                  On the right is the anticipated cost of production as
-                  the number of Widgets is increased.
-                  Clearly we will be RICH!
+                <p>
+                  Accenture delivers its services and solutions through 13 focused industry groups in five operating groups. This industry focus provides
+                  Accenture's professionals with a thorough understanding of industry evolution, business issues and applicable technologies, enabling
+                  Accenture to deliver solutions tailored to each client's industry. The chart on the left breaks down revenue by industry.
+                  Click buttons below to see the total revenue split per industry.
+                </p>
+                <p>
+                  Click on the buttons below to see different views of how the total revenue is split accross different industries.
+                </p>
                   <div class="btn-toolbar">
-                    <a class="btn btn-default" href="#revenue" id="revenue1">Revenue1</a>
-                    <a class="btn btn-default" href="#revenue" id="revenue2">Revenue2</a>
-                    <a class="btn btn-default" href="#revenue" id="revenue3">Revenue3</a>
+                    <a class="btn btn-default" href="#revenue" id="revenue1">View 1</a>
+                    <a class="btn btn-default" href="#revenue" id="revenue2">View 2</a>
+                    <a class="btn btn-default" href="#revenue" id="revenue3">View 3</a>
                   </div>
               </div>
 
@@ -132,37 +136,56 @@
         </div>
     </section>
 
-        <!-- Services Section -->
-    <section id="revenueNett" class="revenueNett-section">
+        <!-- Barchart Section -->
+    <section id="return" class="revenue-section">
         <div class="container">
             <div class="row">
               <div class="col-md-8" id="bar"></div>
               <div class="col-md-4 text-left">
                 <h1>Revenue Before Reimbursements</h1>
-                To the left is a graph showing the anticipated profits
-                of the 'Widget Incorporated' company.
-                On the right is the anticipated cost of production as
-                the number of Widgets is increased.
-                Clearly we will be RICH!
+                * This chart reflects revenues before reimbursements
+                (“net revenues”) for all years since Accenture’s
+                initial public offering. Reimbursements include
+                travel and out-of-pocket expenses and third-party
+                costs, such as the cost of hardware and software
+                resale. Our revenues are denominated in multiple
+                currencies and may be significantly affected by
+                currency exchange-rate fluctuations. When
+                compared to fiscal 2013, there was no aggregate
+                foreign currency translation impact during fiscal
+                2014, resulting in US dollar revenue growth that was
+                the same as our revenue growth in local currency.
               </div>
-
 
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="return" class="return-section">
+    <!-- Linechart Section -->
+    <section id="performance" class="performance-section">
         <div class="container">
             <div class="row">
               <div class="col-md-8" id="line"></div>
               <div class="col-md-4 text-left">
-                <h1>Comparison of Cumulative Total Return</h1>
-                To the left is a graph showing the anticipated profits
-                of the 'Widget Incorporated' company.
-                On the right is the anticipated cost of production as
-                the number of Widgets is increased.
-                Clearly we will be RICH!
+                <h1>Share Price Performance</h1>
+                The performance graph to the left shows
+                the cumulative total shareholder return on
+                our Class A shares for the period starting
+                on August 31, 2010, and ending on August
+                31, 2015, which was the end of fiscal 2015.
+                This is compared with the cumulative total
+                returns over the same period of the S&P
+                500 Index and the S&P 500 Information
+                Technology Sector Index. The graph
+                assumes that on August 31, 2010, $100
+                was invested in our Class A shares and
+                $100 was invested in each of the other two
+                indices, with dividends reinvested on the
+                ex-dividend date without payment of any
+                commissions. The performance shown in
+                the graph represents past performance and
+                should not be considered an indication of
+                future performance.
               </div>
 
             </div>
@@ -175,12 +198,10 @@
             <div class="row">
               <div class="col-md-8" id="country"></div>
               <div class="col-md-4 text-left">
-                <h1>Countries being Operated in</h1>
-                To the left is a graph showing the anticipated profits
-                of the 'Widget Incorporated' company.
-                On the right is the anticipated cost of production as
-                the number of Widgets is increased.
-                Clearly we will be RICH!
+                <h1>Accenture Worldwide</h1>
+                The map on the left highlights countries in which Accenture are incorporated.
+                For a full list of offices and for access the company's legal name and address by country of incorporation,
+                please follow <a href="https://www.accenture.com/us-en/legal-countries-incorporation.aspx">this</a> link.
               </div>
 
             </div>
@@ -199,6 +220,22 @@
 
     <!-- d3js -->
     <script src="js/charts.js"></script>
+    <!--
+   <script type="text/javascript">
+     var locked = 0;
+     var runOnScroll = function testScroll(ev){
+       if(locked<1) return;
+       if(window.pageYOffset>500){
+         locked = locked+1;
+         tree();
+       }
+       else if(window.pageYOffset>3000){
+         line();
+         locked = true;}
+     };
+     window.addEventListener("scroll", runOnScroll);
+     //window.onscroll=testScroll
+   </script>-->
 
 
 

@@ -18,6 +18,7 @@ var x = d3.time.scale().range([0, width]),
 
 //func. to build linechart
 function line(){
+
   var line = d3.svg.line()
     .x(function(d) { return x(d.date); })
     .y(function(d) { return y(d.price); });
@@ -62,7 +63,13 @@ function line(){
       .attr("transform", "translate(0,0)")
       .style("opacity", "0.7")
       .style("font-size", "10px")
-      .call(yAxis);
+      .call(yAxis)
+      .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Cumulative ($)");
 
 
     //draw a line for each series
@@ -106,8 +113,6 @@ function line(){
       .style('font-size', '20px')
       .style('opacity', 0)
       .text('S&P 500 IT: $'+sandpit[sandpit.length-1].price);
-
-
 
     /* Add 'curtain' rectangle to hide entire graph */
     var curtain = svg.append('rect')
@@ -156,6 +161,10 @@ function bar() {
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+  var div = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
   d3.csv("data/bar.csv", btype, function(error, data) {
     if (error) throw error;
 
@@ -188,7 +197,21 @@ function bar() {
       .attr("x", function(d) { return xBar(d.year); })
       .attr("width", xBar.rangeBand())
       .attr("y", function(d) { return y(d.revenue); })
-      .attr("height", function(d) { return height - y(d.revenue); });
+      .attr("height", function(d) { return height - y(d.revenue); })
+      .on("mouseover", function(d) {
+          div.transition()
+          .duration(200)
+          .style("opacity", 0.9);
+
+        div.html("$"+d.revenue+" billion<br>")
+          .style("left", (d3.event.pageX) + "px")
+          .style("top", (d3.event.pageY - 50) + "px");
+      })
+      .on("mouseout", function(d) {
+          div.transition()
+          .duration(500)
+          .style("opacity", 0);
+      });;
   });
 
   function btype(d) {
@@ -226,7 +249,7 @@ function country() {
       stats.forEach(function(d) {
         data[d.code] = d.code;
      });
-      console.log(data)
+      //console.log(data)
 
       svg.selectAll(".country")
         .data(countries)
@@ -369,14 +392,11 @@ function tree() {
     .size([width, height])
     .sticky(false)
     //.sort(function(a,b) { return a.revenue - b.revenue; })
-    .round(true)
+    //.round(true)
+    .padding(2)
     .value(function(d) { return d.revenue; });
 
-  /*var svg = d3.select("#country").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + -(margin.left+55) + "," + margin.top + ")");*/
+  var format = d3.format("$,");
 
   div = d3.select("#treemap").append("div")
     .attr("class","center-block")
@@ -394,9 +414,17 @@ function tree() {
     .attr("class", "node")
     .call(position)
     .style("background", function(d) { return d.color ? d.color : "#fff"; })
-    .text(function(d) { return d.children ? "blue" : d.name + "(" + d.revenue + ")"; });
+    //.text(function(d) { return d.children ? "blue" : d.name + "(" + d.revenue + ")"; })
+    .text(function(d) { return d.children ? null : d.name +": "+ format(d.revenue); })
+    .style("opacity",0);
 
-  console.log(data1);
+  node.transition()
+    .delay(750)
+    .duration(3000)
+    .ease('linear')
+    .style('opacity', 1);
+
+  //console.log(data1);
   d3.select("#revenue1").on("click", function() {
     var node = div.datum(data1).selectAll(".node")
       .data(treemap.nodes);
@@ -408,7 +436,8 @@ function tree() {
 
     node.transition().duration(1500).call(position)
       .style("background", function(d) { return d.color ? d.color : "#fff"; })
-      .text(function(d) { return d.children ? "" : d.name + "(" + d.revenue + ")"; });
+      .attr("text-anchor", "middle")
+      .text(function(d) { return d.children ? null : d.name +": "+ format(d.revenue); })
 
   });
   d3.select("#revenue2").on("click", function() {
@@ -420,7 +449,7 @@ function tree() {
 
     node.transition().duration(1500).call(position)
       .style("background", function(d) { return d.color ? d.color : "#fff"; })
-      .text(function(d) { return d.children ? "" : d.name + "(" + d.revenue + ")"; });
+      .text(function(d) { return d.children ? null : d.name +": "+ format(d.revenue); })
 
   });
 
@@ -433,13 +462,13 @@ function tree() {
 
     node.transition().duration(1500).call(position)
       .style("background", function(d) { return d.color ? d.color : "#fff"; })
-      .text(function(d) { return d.children ? "blue" : d.name + "(" + d.revenue + ")"; });
+      .text(function(d) { return d.children ? null : d.name +": "+ format(d.revenue); })
 
   });
 
 function position() {
   this.style("left", function(d) { return d.x + "px"; })
-    .style("top", function(d) { return d.y + "px"; })
+    .style("top", function(d) { return d.y-12 + "px"; })
     .style("width", function(d) { return Math.max(0, d.dx - 1) + "px"; })
     .style("height", function(d) { return Math.max(0, d.dy - 1) + "px"; });
 }
