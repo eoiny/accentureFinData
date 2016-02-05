@@ -36,8 +36,8 @@
     <!-- d3 library -->
     <script src="js/d3.min.js"></script>
 
-    <script src="//d3js.org/topojson.v1.min.js"></script>
-    <script src="//d3js.org/queue.v1.min.js"></script>
+  <!--<script src="//d3js.org/topojson.v1.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.20/topojson.min.js"></script>
 
 
 </head>
@@ -90,9 +90,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>Scrolling Nav</h1>
-                    <p><strong>Usage Instructions:</strong> Make sure to include the <code>scrolling-nav.js</code>, <code>jquery.easing.min.js</code>, and <code>scrolling-nav.css</code> files. To make a link smooth scroll to another section on the page, give the link the <code>.page-scroll</code> class and set the link target to a corresponding ID on the page.</p>
-                    <a class="btn btn-default page-scroll" href="#revenue">Click Me to Scrolly Down!</a>
+                    <h1>D3 Data Visualisation Demo</h1>
+                    <p>The following demonstration by <code><a href="http://eol.as">eol.as</a></code>, is a work in progress and looks at how to use <code>Bootstrap</code> and <code>d3.js</code> to visualise some financial data. Click the link below to check out the charts.</p>
+                    <a class="btn btn-default page-scroll" href="#revenue">Click Me to Scroll Down!</a>
                 </div>
             </div>
         </div>
@@ -220,22 +220,48 @@
 
     <!-- d3js -->
     <script src="js/charts.js"></script>
-    <!--
+
    <script type="text/javascript">
-     var locked = 0;
-     var runOnScroll = function testScroll(ev){
-       if(locked<1) return;
+     var lockedTree = false;
+     var lockedBar = false;
+     var lockedLine = false;
+     var lockedCountry = false;
+
+     var runOnScrollTree = function testScroll(ev){
+      if(lockedTree) return;
        if(window.pageYOffset>500){
-         locked = locked+1;
          tree();
-       }
-       else if(window.pageYOffset>3000){
-         line();
-         locked = true;}
+         lockedTree = true;
+       };
      };
-     window.addEventListener("scroll", runOnScroll);
+
+     var runOnScrollBar = function testScroll(ev){
+       if(lockedBar) return;
+       if(window.pageYOffset>1800){
+         bar();
+         lockedBar = true;
+       };
+     };
+     var runOnScrollLine = function testScroll(ev){
+       if(lockedLine) return;
+       if(window.pageYOffset>2500){
+         line();
+         lockedLine = true;
+       };
+     };
+     var runOnScrollCountry = function testScroll(ev){
+       if(lockedCountry) return;
+       if(window.pageYOffset>3500){
+         country();
+         lockedCountry = true;
+       };
+     };
+     window.addEventListener("scroll", runOnScrollTree);
+     window.addEventListener("scroll", runOnScrollBar);
+     window.addEventListener("scroll", runOnScrollLine);
+     window.addEventListener("scroll", runOnScrollCountry);
      //window.onscroll=testScroll
-   </script>-->
+   </script>
 
 
 

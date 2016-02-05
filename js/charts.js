@@ -190,7 +190,7 @@ function bar() {
       .style("text-anchor", "end")
       .text("$billion");
 
-    svg.selectAll(".bar")
+    var bar = svg.selectAll(".bar")
       .data(data)
       .enter().append("rect")
       .attr("class", "bar")
@@ -211,7 +211,7 @@ function bar() {
           div.transition()
           .duration(500)
           .style("opacity", 0);
-      });;
+      });
   });
 
   function btype(d) {
@@ -306,13 +306,13 @@ function tree() {
         {
           "id": "1",
           "revenue": 16203915,
-          "color": "steelblue",
+          "color": "fff",
           "name": "Consulting"
         },
         {
           "id": "2",
           "revenue": 14844016,
-          "color": "#80ff80",
+          "color": "#fff",
           "name": "Outsourcing"
         }
       ]
@@ -332,13 +332,13 @@ function tree() {
         {
           "id": "2",
           "revenue": 14844016,
-          "color": "#800080",
+          "color": "#fff",
           "name": "Europe"
         },
         {
           "id": "3",
           "revenue": 5950595,
-          "color": "#808000",
+          "color": "#fff",
           "name": "Growth markets"
         }
       ]
@@ -352,37 +352,37 @@ function tree() {
         {
           "id": "1",
           "revenue": 6349372,
-          "color": "#d73027",
+          "color": "#fff",
           "name": "Communication, Media & Technology"
         },
         {
           "id": "2",
           "revenue": 6634771,
-          "color": "#fc8d59",
+          "color": "#fff",
           "name": "Financial Services"
         },
         {
           "id": "3",
           "revenue": 5462550,
-          "color": "#fee090",
+          "color": "#fff",
           "name": "Health & Public Services"
         },
         {
           "id": "4",
           "revenue": 7596051,
-          "color": "#e0f3f8",
+          "color": "#fff",
           "name": "Products"
         },
         {
           "id": "5",
           "revenue": 4988627,
-          "color": "#91bfdb",
+          "color": "#fff",
           "name": "Resources"
         },
         {
           "id": "6",
           "revenue": 16560,
-          "color": "#4575b4",
+          "color": "#fff",
           "name": "Other"
         }
       ]
@@ -398,6 +398,10 @@ function tree() {
 
   var format = d3.format("$,");
 
+  var div = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
   div = d3.select("#treemap").append("div")
     .attr("class","center-block")
     .style("position", "relative")
@@ -411,12 +415,13 @@ function tree() {
   var node = div.datum(data1).selectAll(".node")
     .data(treemap.nodes)
     .enter().append("div")
-    .attr("class", "node")
+    .attr("class", function(d) { return d.children ? "parent node" : "node"; })
     .call(position)
-    .style("background", function(d) { return d.color ? d.color : "#fff"; })
+    //.style("background", function(d) { return d.color ? d.color : "#fff"; })
     //.text(function(d) { return d.children ? "blue" : d.name + "(" + d.revenue + ")"; })
     .text(function(d) { return d.children ? null : d.name +": "+ format(d.revenue); })
     .style("opacity",0);
+
 
   node.transition()
     .delay(750)
@@ -435,11 +440,12 @@ function tree() {
     node.exit().remove();
 
     node.transition().duration(1500).call(position)
-      .style("background", function(d) { return d.color ? d.color : "#fff"; })
+      //.style("background", function(d) { return d.color ? d.color : "#fff"; })
       .attr("text-anchor", "middle")
       .text(function(d) { return d.children ? null : d.name +": "+ format(d.revenue); })
 
   });
+
   d3.select("#revenue2").on("click", function() {
     var node = div.datum(data2).selectAll(".node")
       .data(treemap.nodes);
@@ -448,7 +454,7 @@ function tree() {
     node.exit().remove();
 
     node.transition().duration(1500).call(position)
-      .style("background", function(d) { return d.color ? d.color : "#fff"; })
+      //.style("background", function(d) { return d.color ? d.color : "#fff"; })
       .text(function(d) { return d.children ? null : d.name +": "+ format(d.revenue); })
 
   });
@@ -461,7 +467,7 @@ function tree() {
     node.exit().remove();
 
     node.transition().duration(1500).call(position)
-      .style("background", function(d) { return d.color ? d.color : "#fff"; })
+      //.style("background", function(d) { return d.color ? d.color : "#fff"; })
       .text(function(d) { return d.children ? null : d.name +": "+ format(d.revenue); })
 
   });
@@ -476,7 +482,7 @@ function position() {
 }
 
 
-tree()
-bar()
-country()
-line();
+//tree()
+//bar()
+//country()
+//line();

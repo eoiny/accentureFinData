@@ -73,6 +73,7 @@ of those sections to manage the look and feel of the site. */
     border-bottom: 1px dotted #eee;
 }
 
+/*
 .node {
     border: solid .9px white;
     border-radius: 0px;
@@ -83,7 +84,30 @@ of those sections to manage the look and feel of the site. */
     text-indent: 2px;
     text-align: left;
     padding: 4px 0px 0px 5px;
+}*/
+.node {
+    border: solid 1px #4682B4;
+    font: 12px, sans-serif;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 1.2em;
+    overflow: hidden;
+    position: absolute;
+    color: #000;
+    cursor: default;
+    background: #fff;
+    padding: 4px 0px 0 5px;
 }
+
+.parent.node {
+    border: 1px solid #fff;
+    background: #4682B4;
+}
+
+.node:hover {
+    background: brown;
+}
+
 
 .bar {
     fill: steelblue;
