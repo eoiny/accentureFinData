@@ -1,0 +1,31 @@
+{
+  "name": "acnfindata",
+  "version": "1.0.0",
+  "description": "this a demo for d3",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eoiny/accentureFinData.git"
+  },
+  "keywords": [
+    "d3",
+    "heroku",
+    "data",
+    "viz"
+  ],
+  "author": "eol.as",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eoiny/accentureFinData/issues"
+  },
+  "homepage": "https://github.com/eoiny/accentureFinData#readme",
+  "dependencies": {
+    "d3": "^3.5.14",
+    "install": "^0.4.2",
+    "npm": "^3.7.1",
+    "topojson": "^1.6.22"
+  }
+}
