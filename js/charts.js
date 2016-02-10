@@ -49,6 +49,15 @@ function line(){
       .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+
+    svg.append("text")
+      .attr("transform", "translate(" + (width-60) + " ," + (height + margin.bottom) + ")")
+      .style("text-anchor", "middle")
+      .attr('text-anchor', 'end')
+      .style('font-color', '#eee')
+      .style('font-size', '12px')
+      .text('data | accenture.com');
+
     //call x-axis
     svg.append("g")
       .attr("class", "x axis")
@@ -178,6 +187,16 @@ function bar() {
       .style("font-size", "10px")
       .call(xBarAxis);
 
+    // Add the text label for the x axis
+    svg.append("text")
+      .attr("transform", "translate(" + (width-60) + " ," + (height + margin.bottom) + ")")
+      .style("text-anchor", "middle")
+      .attr('text-anchor', 'end')
+      .style('font-color', '#eee')
+      .style('font-size', '12px')
+      .text('data | accenture.com');
+
+
     svg.append("g")
       .attr("class", "y axis")
       .style("opacity", "0.7")
@@ -251,6 +270,7 @@ function country() {
      });
       //console.log(data)
 
+
       svg.selectAll(".country")
         .data(countries)
         .enter().insert("path", ".graticule")
@@ -292,6 +312,16 @@ function country() {
             .duration(500)
             .style("opacity", 0);
         });
+
+      /*  svg.append("text")
+        .attr("transform", "translate(" + (width+80) + " ," + (height + margin.top) + ")")
+        .style("text-anchor", "middle")
+        .attr('text-anchor', 'end')
+        .style('font-color', '#eee')
+        .style('font-size', '12px')
+        .text('data | accenture.com');*/
+
+
     });
   });
 }
@@ -408,9 +438,23 @@ function tree() {
     .style("width", (width + margin.left + margin.right) + "px")
     .style("height", (height + margin.top + margin.bottom) + "px")
     .style("left", margin.left + "px")
-    .style("top", margin.top + "px");
+    .style("top", margin.top + "px")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  //.attr("id", "first");
+
+
+  var cite = d3.select("#treemap").append("div")
+    .attr('class', 'cite')
+    .append("text")
+    .attr("dx", 12)
+    .attr("dy", ".35em")
+    .attr('text-anchor', 'end')
+    .style('font-color', '#eee')
+    .style('font-size', '12px')
+    .text('data | accenture.com');
 
   var node = div.datum(data1).selectAll(".node")
     .data(treemap.nodes)
@@ -445,6 +489,7 @@ function tree() {
       .text(function(d) { return d.children ? null : d.name +": "+ format(d.revenue); })
 
   });
+
 
   d3.select("#revenue2").on("click", function() {
     var node = div.datum(data2).selectAll(".node")

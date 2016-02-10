@@ -85,6 +85,12 @@ of those sections to manage the look and feel of the site. */
     text-align: left;
     padding: 4px 0px 0px 5px;
 }*/
+
+.cite{
+    text-align: right;
+    padding: 0px 100px 0 0px;
+
+}
 .node {
     border: solid 1px #4682B4;
     font: 12px, sans-serif;
