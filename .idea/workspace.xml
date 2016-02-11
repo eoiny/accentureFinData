@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="480beb4e-c9a8-4860-b1b3-0f68b1d02530" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/accentureFinData.iml" afterPath="$PROJECT_DIR$/.idea/accentureFinData.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/scrolling-nav.css" afterPath="$PROJECT_DIR$/css/scrolling-nav.css" />
     </list>
     <ignored path="accentureFinData.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,7 +26,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6254459">
+            <state vertical-scroll-proportion="0.62693685">
               <caret line="253" column="31" selection-start-line="253" selection-start-column="31" selection-end-line="253" selection-end-column="31" />
               <folding />
             </state>
@@ -48,7 +47,7 @@
         <entry file="file://$PROJECT_DIR$/css/scrolling-nav.css">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="90" column="26" selection-start-line="90" selection-start-column="26" selection-end-line="90" selection-end-column="26" />
+              <caret line="39" column="24" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -88,8 +87,8 @@
         <option value="$PROJECT_DIR$/data/world10.json" />
         <option value="$PROJECT_DIR$/data/world_simple.json" />
         <option value="$PROJECT_DIR$/js/charts.js" />
-        <option value="$PROJECT_DIR$/css/scrolling-nav.css" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/css/scrolling-nav.css" />
       </list>
     </option>
   </component>
@@ -591,14 +590,14 @@
     <entry file="file://$PROJECT_DIR$/css/scrolling-nav.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="90" column="26" selection-start-line="90" selection-start-column="26" selection-end-line="90" selection-end-column="26" />
+          <caret line="39" column="24" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6254459">
+        <state vertical-scroll-proportion="0.62693685">
           <caret line="253" column="31" selection-start-line="253" selection-start-column="31" selection-end-line="253" selection-end-column="31" />
           <folding />
         </state>
